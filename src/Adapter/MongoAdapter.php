@@ -162,16 +162,16 @@ class MongoAdapter extends OAuth2Mongo
                 ]]
             );
         } else {
-            $this->collection('client_table')->insert(
-                [
-                    'client_id'     => $client_id,
-                    'client_secret' => $client_secret,
-                    'redirect_uri'  => $redirect_uri,
-                    'grant_types'   => $grant_types,
-                    'scope'         => $scope,
-                    'user_id'       => $user_id,
-                ]
-            );
+            $document = [
+                'client_id'     => $client_id,
+                'client_secret' => $client_secret,
+                'redirect_uri'  => $redirect_uri,
+                'grant_types'   => $grant_types,
+                'scope'         => $scope,
+                'user_id'       => $user_id,
+            ];
+
+            $this->collection('client_table')->insert($document);
         }
 
         return true;
